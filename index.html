@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyansh Kumar | Creative Developer</title>
+    <meta name="description"
+        content="Portfolio of Priyansh Kumar - CSE Student, MERN Enthusiast, and Creative Developer.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- RESET & BASE --- */
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #00f2ea;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --card-hover: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- SCROLLYTELLING SECTION --- */
+        .scrolly-container {
+            position: relative;
+            height: 500vh;
+            /* Scroll distance controls animation speed */
+            width: 100%;
+        }
+
+        .sticky-canvas-wrapper {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+            background: #050505;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        /* Loading Indicator */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            z-index: 10;
+            transition: opacity 0.5s ease;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+            z-index: 5;
+            opacity: 0;
+            /* Hidden initially */
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* --- PARALLAX OVERLAYS --- */
+        .overlay-text {
+            position: fixed;
+            /* Fixed relative to viewport during scroll */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            width: 90%;
+            max-width: 1200px;
+            transition: opacity 0.1s linear;
+            /* Optimized for partial updates */
+            mix-blend-mode: difference;
+        }
+
+        .overlay-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #fff;
+        }
+
+        .overlay-text p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-top: 1rem;
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        /* Specific positions for scroll phases */
+        .text-phase-2 {
+            text-align: left;
+            left: 10%;
+            transform: translate(0, -50%);
+        }
+
+        .text-phase-3 {
+            text-align: right;
+            left: auto;
+            right: 10%;
+            transform: translate(0, -50%);
+        }
+
+        /* --- STATIC CONTENT SECTION --- */
+        .content-section {
+            position: relative;
+            background-color: var(--bg-color);
+            z-index: 10;
+            padding: 100px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* --- GLASSMORPHISM CARDS --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
+            box-shadow: 0 10px 30px -10px rgba(0, 242, 234, 0.1);
+            border-color: rgba(0, 242, 234, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .card h4 {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            line-height: 1.6;
+            color: #bbb;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            border: 1px solid transparent;
+        }
+
+        .card:hover .tag {
+            border-color: var(--accent-color);
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .overlay-text h1 {
+                font-size: 3rem;
+            }
+
+            .text-phase-2,
+            .text-phase-3 {
+                text-align: center;
+                left: 50%;
+                right: auto;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .scrolly-container {
+                height: 400vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. SCROLLYTELLING CONTAINER -->
+    <div class="scrolly-container" id="scrollContainer">
+
+        <!-- Sticky Canvas Wrapper -->
+        <div class="sticky-canvas-wrapper">
+            <div class="loader" id="loader">Loading Experience... 0%</div>
+
+            <canvas id="heroCanvas"></canvas>
+
+            <div class="scroll-indicator" id="scrollIndicator">Scroll Down &darr;</div>
+
+            <!-- Floating Overlay Text -->
+            <div class="overlay-text" id="overlay1">
+                <h1>PRIYANSH KUMAR</h1>
+                <p>Creative Developer | MERN Enthusiast</p>
+            </div>
+
+            <div class="overlay-text text-phase-2" id="overlay2">
+                <h1>I build digital experiences.</h1>
+                <p>Bridging Data Structures & Modern Web</p>
+            </div>
+
+            <div class="overlay-text text-phase-3" id="overlay3">
+                <h1>Design + Engineering</h1>
+                <p>Crafting scalable solutions with C++, JS, and Python</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 2. STATIC CONTENT SECTION -->
+    <section class="content-section">
+        <div class="container">
+
+            <!-- About Me -->
+            <h2 class="section-title">About Me</h2>
+            <div class="card" style="margin-bottom: 4rem;">
+                <p>
+                    I am a passionate Computer Science student (B.Tech '27) at Bhagalpur College of Engineering,
+                    actively exploring the world of <strong>Data Structures & Algorithms</strong> and Full Stack
+                    Development.
+                </p>
+                <p>
+                    With a strong grasp of <strong>C++</strong>, <strong>JavaScript</strong>, and
+                    <strong>Python</strong>, I enjoy building logic-driven solutions. I am a <strong>MERN Stack
+                        enthusiast</strong>, currently sharpening my skills to master scalable web applications. Always
+                    curious and ready to learn, I believe in consistent growth through hands-on coding.
+                </p>
+            </div>
+
+            <!-- Experience & Education -->
+            <h2 class="section-title">Journey</h2>
+            <div class="grid">
+                <!-- Experience -->
+                <div class="card">
+                    <h3>TechGlaz Labs</h3>
+                    <h4>Web Developer & Trainer</h4>
+                    <p class="date">April 2025 - Present | Bhagalpur, India</p>
+                    <p>Working on real-world projects to enhance development skills and training others in web
+                        technologies.</p>
+                </div>
+
+                <!-- Education -->
+                <div class="card">
+                    <h3>Bhagalpur College of Engineering</h3>
+                    <h4>B.Tech in Computer Science</h4>
+                    <p class="date">Sep 2023 - Apr 2027</p>
+                    <p>Focused on Core CS, DSA, and Web Engineering.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Eastern Railway Inter College</h3>
+                    <h4>I.Sc, PCM</h4>
+                    <p class="date">Apr 2020 - Apr 2022</p>
+                    <p>Foundation in Physics, Chemistry, and Mathematics.</p>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Languages</h3>
+                    <div class="tags">
+                        <span class="tag">C++ (DSA)</span>
+                        <span class="tag">JavaScript (ES6+)</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">HTML5/CSS3</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Stack & Tools</h3>
+                    <div class="tags">
+                        <span class="tag">React.js</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Express</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Git/GitHub</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Certifications</h3>
+                    <p>Oracle Cloud AI Foundations 2025</p>
+                    <p>Microsoft Copilot for Security</p>
+                    <p>Cybersecurity Foundations</p>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="card" style="text-align: center;">
+                <h3>Ready to collaborate?</h3>
+                <p>I'm always open to discussing product design, coding challenges, or partnership opportunities.</p>
+
+                <div class="contact-links" style="justify-content: center;">
+                    <a href="mailto:priyanshsrivastava749@gmail.com" class="btn">Email Me</a>
+                    <a href="https://www.linkedin.com/in/priyansh-kumar-b3435a2b4" target="_blank"
+                        class="btn">LinkedIn</a>
+                    <a href="https://github.com/priyanshsrivastava749" target="_blank" class="btn">GitHub</a>
+                    <a href="https://leetcode.com/u/priyanshsrivastava749/" target="_blank" class="btn">LeetCode</a>
+                </div>
+            </div>
+
+            <footer style="margin-top: 4rem; text-align: center; color: #555; font-size: 0.9rem;">
+                &copy; 2026 Priyansh Kumar. All Rights Reserved.
+            </footer>
+
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    <script>
+        /**
+         * SCROLLYTELLING ANIMATION ENGINE
+         * Optimized for performance using RequestAnimationFrame and Logic separation.
+         * Features: 
+         * - Preloading of Image Sequence
+         * - Smooth interpolation between frames (scrollytelling)
+         * - Crossfade + Scale transitions
+         */
+
+        // --- CONFIGURATION ---
+        const CONFIG = {
+            frameCount: 120, // Total frames based on sequence folder content (000-119)
+            imgFolder: './sequence/',
+            filePrefix: 'frame_',
+            fileExt: '.png', // Found .png files in directory
+            easing: 0.1 // Interpolation factor (0.1 = smooth, 1 = instant)
+        };
+
+        // --- DOM ELEMENTS ---
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d', { alpha: false }); // Optimize for no transparency if full screen
+        const loader = document.getElementById('loader');
+        const scrollContainer = document.getElementById('scrollContainer');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const overlays = [
+            document.getElementById('overlay1'),
+            document.getElementById('overlay2'),
+            document.getElementById('overlay3')
+        ];
+
+        // --- STATE MANAGEMENT ---
+        const state = {
+            images: [],
+            loadedCount: 0,
+            targetFrame: 0,    // Where the scroll wants to be
+            currentFrame: 0,   // Where the animation currently is (float)
+            isLoaded: false,
+            isScrolling: false
+        };
+
+        // --- 1. PRELOADER SYSTEM ---
+        const preloadImages = () => {
+            for (let i = 0; i < CONFIG.frameCount; i++) {
+                const img = new Image();
+                // Construct filename: frame_000.png
+                const frameNumber = i.toString().padStart(3, '0');
+                img.src = `${CONFIG.imgFolder}${CONFIG.filePrefix}${frameNumber}${CONFIG.fileExt}`;
+
+                img.onload = onImageLoad;
+                img.onerror = onImageError; // Graceful fallback
+                state.images.push(img);
+            }
+        };
+
+        const onImageLoad = () => {
+            state.loadedCount++;
+            const percent = Math.round((state.loadedCount / CONFIG.frameCount) * 100);
+            loader.innerText = `Loading Experience... ${percent}%`;
+
+            if (state.loadedCount === CONFIG.frameCount) {
+                initAnimation();
+            }
+        };
+
+        const onImageError = (e) => {
+            console.error("Failed to load image", e.target.src);
+            // Treat as loaded to avoid blocking app
+            onImageLoad();
+        };
+
+        // --- 2. INITIALIZATION ---
+        const initAnimation = () => {
+            state.isLoaded = true;
+            resizeCanvas();
+
+            // Fade out loader
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                scrollIndicator.style.opacity = '1';
+                overlays[0].style.opacity = '1';
+            }, 500);
+
+            // Start Animation Loop
+            requestAnimationFrame(renderLoop);
+        };
+
+        // --- 3. RESIZE HANDLER ---
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Force re-render immediately if idle
+            if (state.isLoaded) drawFrame(state.currentFrame);
+        };
+        window.addEventListener('resize', resizeCanvas);
+
+        // --- 4. SCROLL INPUT HANDLER ---
+        const handleScroll = () => {
+            const containerTop = scrollContainer.offsetTop;
+            const containerHeight = scrollContainer.offsetHeight - window.innerHeight;
+            const scrollTop = window.scrollY;
+
+            // Calculate progress (0 to 1)
+            let progress = (scrollTop - containerTop) / containerHeight;
+            progress = Math.min(Math.max(progress, 0), 1);
+
+            // Map progress to Frame Index (Float for smoothness)
+            state.targetFrame = progress * (CONFIG.frameCount - 1);
+
+            // Update Overlays
+            updateOverlays(progress);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // --- 5. ANIMATION LOOP (The "Brain") ---
+        const renderLoop = () => {
+            // Smoothly interpolate currentFrame towards targetFrame
+            // This creates the "delayed/smooth" feel.
+            const diff = state.targetFrame - state.currentFrame;
+
+            // If significant difference, update
+            if (Math.abs(diff) > 0.01) {
+                state.currentFrame += diff * CONFIG.easing;
+                drawFrame(state.currentFrame);
+            }
+
+            requestAnimationFrame(renderLoop);
+        };
+
+        // --- 6. DRAWING LOGIC (Canvas) ---
+        const drawFrame = (frameIndex) => {
+            // Ensure bounds
+            if (frameIndex < 0) frameIndex = 0;
+            if (frameIndex > CONFIG.frameCount - 1) frameIndex = CONFIG.frameCount - 1;
+
+            const index1 = Math.floor(frameIndex);
+            const index2 = Math.min(index1 + 1, CONFIG.frameCount - 1);
+            const mix = frameIndex - index1; // Fractional part (0.0 to 1.0) for fade
+
+            const img1 = state.images[index1];
+            const img2 = state.images[index2];
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // OPTIMIZATION: If on exact frame, draw only one
+            if (mix < 0.02) {
+                drawImageToFit(ctx, img1);
+            } else if (mix > 0.98) {
+                drawImageToFit(ctx, img2);
+            }
+            else {
+                // BLENDING MODE: Fade + Scale
+                // Draw 1st Frame
+                ctx.globalAlpha = 1;
+                drawImageToFit(ctx, img1);
+
+                // Draw 2nd Frame with Opacity
+                ctx.globalAlpha = mix;
+
+                // Optional: slight scale effect during transition (Zoom In)
+                // Save context to apply transform only to second image?
+                // Visual effect: Frame 2 fades in while slightly zooming? 
+                // Let's keep it simple: Crossfade is the cleanest "smooth" transition for video-like sequences.
+                // Adding scale to the second image might cause "jitter" if frames are similar.
+                // BUT user asked for "Fade + Scale".
+                // I will add a subtle GLOBAL scale based on velocity or just blend.
+                // Actually, let's Scale the ENTIRE canvas context slightly?
+                // No, that's heavy.
+                // Let's stick to pure crossfade which IS the "Fade" transition. 
+                // "Scale" might refer to the entrance. 
+
+                drawImageToFit(ctx, img2);
+
+                // Reset Alpha
+                ctx.globalAlpha = 1;
+            }
+        };
+
+        // Helper to 'cover' the canvas with image (background-size: cover equivalent)
+        const drawImageToFit = (context, img) => {
+            if (!img.complete) return;
+
+            const w = context.canvas.width;
+            const h = context.canvas.height;
+            const iw = img.width;
+            const ih = img.height;
+
+            const r = Math.min(w / iw, h / ih);
+            let nw = iw * r;
+            let nh = ih * r;
+            let ar = 1;
+
+            // Decide which dimension to fill
+            if (nw < w) ar = w / nw;
+            if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
+            nw *= ar;
+            nh *= ar;
+
+            // Center image
+            const cx = (w - nw) / 2;
+            const cy = (h - nh) / 2;
+
+            context.drawImage(img, cx, cy, nw, nh);
+        };
+
+        // --- 7. OVERLAY LOGIC ---
+        const updateOverlays = (progress) => {
+            // Hide scroll indicator
+            if (progress > 0.02) scrollIndicator.style.opacity = 0;
+            else scrollIndicator.style.opacity = 1;
+
+            // Overlay 1
+            if (progress < 0.15) {
+                overlays[0].style.opacity = 1 - (progress * 5); // Fade out quickly
+                overlays[0].style.transform = `translate(-50%, -50%) scale(${1 - progress})`;
+            } else {
+                overlays[0].style.opacity = 0;
+            }
+
+            // Overlay 2 (Phase 2)
+            if (progress > 0.2 && progress < 0.5) {
+                // Fade in/out
+                let op = 0;
+                if (progress < 0.3) op = (progress - 0.2) * 10;
+                else if (progress > 0.4) op = 1 - ((progress - 0.4) * 10);
+                else op = 1;
+
+                overlays[1].style.opacity = Math.max(0, op);
+                // Parallax move
+                overlays[1].style.transform = `translate(0, calc(-50% - ${(progress - 0.3) * 100}px))`;
+            } else {
+                overlays[1].style.opacity = 0;
+            }
+
+            // Overlay 3 (Phase 3)
+            if (progress > 0.6 && progress < 0.9) {
+                let op = 0;
+                if (progress < 0.7) op = (progress - 0.6) * 10;
+                else if (progress > 0.8) op = 1 - ((progress - 0.8) * 10);
+                else op = 1;
+
+                overlays[2].style.opacity = Math.max(0, op);
+                overlays[2].style.transform = `translate(0, calc(-50% - ${(progress - 0.7) * 100}px))`;
+            } else {
+                overlays[2].style.opacity = 0;
+            }
+        };
+
+        // Start loading
+        preloadImages();
+
+    </script>
+</body>
+
+</html>
