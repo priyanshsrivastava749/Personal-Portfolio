@@ -717,6 +717,8 @@
         };
 
         const updateOverlays = (p) => {
+            const isMobile = window.innerWidth < 768;
+
             // Overlay 1 (0.0 - 0.2)
             if (p < 0.2) {
                 overlays[0].style.opacity = 1 - (p * 5);
@@ -732,8 +734,11 @@
                 else if (p > 0.4) op = 1 - ((p - 0.4) * 10);
                 else op = 1;
                 overlays[1].style.opacity = op;
+
                 const y = (p - 0.2) * 200;
-                overlays[1].style.transform = `translate(0, calc(-50% - ${y}px))`;
+                // Mobile: Keep centered (-50% X) | Desktop: Left aligned (0% X)
+                const xVal = isMobile ? '-50%' : '0';
+                overlays[1].style.transform = `translate(${xVal}, calc(-50% - ${y}px))`;
             } else {
                 overlays[1].style.opacity = 0;
             }
@@ -745,8 +750,11 @@
                 else if (p > 0.8) op = 1 - ((p - 0.8) * 10);
                 else op = 1;
                 overlays[2].style.opacity = op;
+
                 const y = (p - 0.6) * 200;
-                overlays[2].style.transform = `translate(0, calc(-50% - ${y}px))`;
+                // Mobile: Keep centered (-50% X) | Desktop: Right aligned (0% X relative to right pos)
+                const xVal = isMobile ? '-50%' : '0';
+                overlays[2].style.transform = `translate(${xVal}, calc(-50% - ${y}px))`;
             } else {
                 overlays[2].style.opacity = 0;
             }
