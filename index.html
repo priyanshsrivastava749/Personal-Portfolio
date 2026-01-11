@@ -4,28 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priyansh Kumar | Creative Developer</title>
-    <meta name="description"
-        content="Portfolio of Priyansh Kumar - CSE Student, MERN Enthusiast, and Creative Developer.">
+    <title>PRIYANSH KUMAR | DEV_001</title>
+    <meta name="description" content="Portfolio of Priyansh Kumar - Creative Developer.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap"
         rel="stylesheet">
 
     <style>
-        /* --- RESET & BASE --- */
+        /* --- 1. NEO-BRUTALIST VARIABLES --- */
         :root {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --accent-color: #00f2ea;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --card-hover: rgba(255, 255, 255, 0.08);
+            --bg-color: #050505;
+            --surface-color: #0f0f0f;
+            --text-main: #e0e0e0;
+            --text-muted: #888;
+            --accent: #ccff00;
+            /* Acid Green */
+            --border: #333;
+            --grid-line: rgba(255, 255, 255, 0.03);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
+        /* --- 2. RESET & BASE --- */
         * {
             margin: 0;
             padding: 0;
@@ -34,31 +38,36 @@
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            font-family: var(--font-display);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            /* Subtle Grid Background */
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: color 0.3s ease;
         }
 
-        a:hover {
-            color: var(--accent-color);
+        /* Selection Color */
+        ::selection {
+            background: var(--accent);
+            color: #000;
         }
 
-        /* --- SCROLLYTELLING SECTION --- */
+        /* --- 3. SCROLLYTELLING HERO --- */
         .scrolly-container {
             position: relative;
             height: 500vh;
-            /* Scroll distance controls animation speed */
+            /* Length of scroll */
             width: 100%;
         }
 
-        .sticky-canvas-wrapper {
+        .sticky-wrapper {
             position: sticky;
             top: 0;
             left: 0;
@@ -66,251 +75,278 @@
             height: 100vh;
             overflow: hidden;
             z-index: 1;
-            background: #050505;
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--border);
         }
 
         canvas {
             display: block;
             width: 100%;
             height: 100vh;
-            object-fit: cover;
+            /* In Brutalist style, we might want a raw look, no blur */
         }
 
-        /* Loading Indicator */
-        .loader {
+        /* Vignette / Scanline Overlay for Style */
+        .scanlines {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            z-index: 10;
-            transition: opacity 0.5s ease;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
             pointer-events: none;
+            z-index: 2;
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #fff;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: bounce 2s infinite;
-            z-index: 5;
-            opacity: 0;
-            /* Hidden initially */
-            transition: opacity 0.5s;
-            pointer-events: none;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* --- PARALLAX OVERLAYS --- */
+        /* --- 4. TYPOGRAPHY OVERLAYS --- */
         .overlay-text {
             position: fixed;
-            /* Fixed relative to viewport during scroll */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 100%;
+            padding: 0 2rem;
             text-align: center;
-            opacity: 0;
+            z-index: 10;
             pointer-events: none;
-            z-index: 5;
-            width: 90%;
-            max-width: 1200px;
+            opacity: 0;
             transition: opacity 0.1s linear;
-            /* Optimized for partial updates */
             mix-blend-mode: difference;
         }
 
         .overlay-text h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.9;
+            text-transform: uppercase;
             font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
             color: #fff;
+            letter-spacing: -0.04em;
         }
 
-        .overlay-text p {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            margin-top: 1rem;
-            font-weight: 300;
-            color: #ccc;
+        .overlay-text .meta {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+            letter-spacing: 2px;
         }
 
-        /* Specific positions for scroll phases */
-        .text-phase-2 {
+        /* Positions */
+        .pos-left {
             text-align: left;
-            left: 10%;
+            left: 0;
             transform: translate(0, -50%);
         }
 
-        .text-phase-3 {
+        .pos-right {
             text-align: right;
             left: auto;
-            right: 10%;
+            right: 0;
             transform: translate(0, -50%);
         }
 
-        /* --- STATIC CONTENT SECTION --- */
+        /* --- 5. CONTENT SECTION (BRUTALIST) --- */
         .content-section {
             position: relative;
-            background-color: var(--bg-color);
-            z-index: 10;
-            padding: 100px 20px;
-            min-height: 100vh;
+            background: var(--bg-color);
+            z-index: 20;
+            border-top: 1px solid var(--accent);
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            min-height: 100vh;
+            background: var(--bg-color);
         }
 
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--accent-color);
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 1rem;
-            display: inline-block;
+        .section-header {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: baseline;
+            gap: 2rem;
         }
 
-        /* --- GLASSMORPHISM CARDS --- */
-        .grid {
+        .section-header h2 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .section-header span {
+            font-family: var(--font-mono);
+            color: var(--accent);
+        }
+
+        /* Grid Layout */
+        .brutal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            border-bottom: 1px solid var(--border);
         }
 
-        .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        .brutal-card {
+            padding: 3rem;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            background: var(--card-hover);
-            box-shadow: 0 10px 30px -10px rgba(0, 242, 234, 0.1);
-            border-color: rgba(0, 242, 234, 0.3);
+        .brutal-card:hover {
+            background: var(--surface-color);
         }
 
-        .card h3 {
-            font-size: 1.5rem;
+        .brutal-card h3 {
+            font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .card h4 {
-            font-size: 1rem;
-            color: #888;
-            margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .card p {
-            line-height: 1.6;
-            color: #bbb;
-            margin-bottom: 1rem;
+        .brutal-card .role {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: block;
+            font-size: 0.9rem;
         }
 
-        /* Skills Tags */
-        .tags {
+        .brutal-card p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        /* Tech Tags */
+        .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            border: 1px solid transparent;
-        }
-
-        .card:hover .tag {
-            border-color: var(--accent-color);
-        }
-
-        /* Contact Section */
-        .contact-links {
-            display: flex;
-            gap: 2rem;
+            gap: 10px;
             margin-top: 2rem;
-            flex-wrap: wrap;
         }
 
-        .btn {
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            border-radius: 8px;
-            font-weight: 600;
+        .tech-pill {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+            padding: 5px 10px;
+            color: var(--text-main);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            background: var(--accent-color);
+        .brutal-card:hover .tech-pill {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Large Contact Button */
+        .big-link {
+            display: block;
+            font-size: clamp(2rem, 5vw, 4rem);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .big-link:hover {
+            background: var(--accent);
             color: #000;
         }
 
-        /* --- RESPONSIVE --- */
+        /* Marquee Strip */
+        .marquee-container {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            overflow: hidden;
+            background: var(--surface-color);
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Loader */
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .bar-container {
+            width: 300px;
+            height: 4px;
+            background: #222;
+            margin-top: 1rem;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.2s;
+        }
+
+        .loader-text {
+            font-family: var(--font-mono);
+            color: var(--accent);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 0;
+                border: none;
+            }
+
+            .brutal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brutal-card {
+                border-right: none;
+            }
+
             .overlay-text h1 {
                 font-size: 3rem;
             }
 
-            .text-phase-2,
-            .text-phase-3 {
+            .pos-left,
+            .pos-right {
                 text-align: center;
                 left: 50%;
-                right: auto;
                 transform: translate(-50%, -50%);
-                width: 100%;
-                padding: 0 20px;
-            }
-
-            .scrolly-container {
-                height: 400vh;
             }
         }
     </style>
@@ -318,388 +354,383 @@
 
 <body>
 
-    <!-- 1. SCROLLYTELLING CONTAINER -->
+    <!-- LOADER -->
+    <div class="loader-overlay" id="loader">
+        <div class="loader-text">INITIALIZING SYSTEM... <span id="loadPercent">0%</span></div>
+        <div class="bar-container">
+            <div class="bar-fill" id="loadBar"></div>
+        </div>
+    </div>
+
+    <!-- SCROLL AREA -->
     <div class="scrolly-container" id="scrollContainer">
-
-        <!-- Sticky Canvas Wrapper -->
-        <div class="sticky-canvas-wrapper">
-            <div class="loader" id="loader">Loading Experience... 0%</div>
-
+        <div class="sticky-wrapper">
+            <div class="scanlines"></div>
             <canvas id="heroCanvas"></canvas>
 
-            <div class="scroll-indicator" id="scrollIndicator">Scroll Down &darr;</div>
-
-            <!-- Floating Overlay Text -->
+            <!-- OVERLAYS -->
             <div class="overlay-text" id="overlay1">
-                <h1>PRIYANSH KUMAR</h1>
-                <p>Creative Developer | MERN Enthusiast</p>
+                <span class="meta">/// PORTFOLIO_2026</span>
+                <h1>Priyansh<br>Kumar</h1>
+                <span class="meta" style="margin-top: 1rem; color: #fff;">CREATIVE DEV & MERN ARCHITECT</span>
             </div>
 
-            <div class="overlay-text text-phase-2" id="overlay2">
-                <h1>I build digital experiences.</h1>
-                <p>Bridging Data Structures & Modern Web</p>
+            <div class="overlay-text pos-left" id="overlay2">
+                <span class="meta">/// SYSTEM_CAPABILITIES</span>
+                <h1>Digital<br>Craftsman</h1>
             </div>
 
-            <div class="overlay-text text-phase-3" id="overlay3">
-                <h1>Design + Engineering</h1>
-                <p>Crafting scalable solutions with C++, JS, and Python</p>
+            <div class="overlay-text pos-right" id="overlay3">
+                <span class="meta">/// CORE_FOCUS</span>
+                <h1>Design +<br>Logic</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <section class="content-section">
+
+        <!-- Marquee -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                HTML5 /// CSS3 /// JAVASCRIPT /// REACT.JS /// NODE.JS /// MONGODB /// C++ (DSA) /// PYTHON /// ORACLE
+                CLOUD /// SYSTEM DESIGN /// HTML5 /// CSS3 /// JAVASCRIPT /// REACT.JS /// NODE.JS /// MONGODB /// C++
+                (DSA) /// PYTHON /// ORACLE CLOUD /// SYSTEM DESIGN ///
             </div>
         </div>
 
-    </div>
-
-    <!-- 2. STATIC CONTENT SECTION -->
-    <section class="content-section">
         <div class="container">
-
-            <!-- About Me -->
-            <h2 class="section-title">About Me</h2>
-            <div class="card" style="margin-bottom: 4rem;">
-                <p>
-                    I am a passionate Computer Science student (B.Tech '27) at Bhagalpur College of Engineering,
-                    actively exploring the world of <strong>Data Structures & Algorithms</strong> and Full Stack
-                    Development.
-                </p>
-                <p>
-                    With a strong grasp of <strong>C++</strong>, <strong>JavaScript</strong>, and
-                    <strong>Python</strong>, I enjoy building logic-driven solutions. I am a <strong>MERN Stack
-                        enthusiast</strong>, currently sharpening my skills to master scalable web applications. Always
-                    curious and ready to learn, I believe in consistent growth through hands-on coding.
+            <!-- About -->
+            <div class="brutal-card" style="border-right: none;">
+                <span class="role">/// 01_IDENTITY</span>
+                <h3>About The Developer</h3>
+                <p style="max-width: 800px; color: #fff; font-size: 1.5rem;">
+                    I am a Computer Science Engineer (B.Tech '27) obsessed with <strong>Data Structures</strong> and
+                    <strong>Full Stack Architecture</strong>. I don't just write code; I engineer scalable solutions
+                    using the MERN stack and C++. Currently bridging the gap between raw logic and interactive design.
                 </p>
             </div>
 
-            <!-- Experience & Education -->
-            <h2 class="section-title">Journey</h2>
-            <div class="grid">
-                <!-- Experience -->
-                <div class="card">
+            <!-- Experience -->
+            <div class="section-header">
+                <span>/// 02_TIMELINE</span>
+                <h2>Experience</h2>
+            </div>
+
+            <div class="brutal-grid">
+                <div class="brutal-card">
                     <h3>TechGlaz Labs</h3>
-                    <h4>Web Developer & Trainer</h4>
-                    <p class="date">April 2025 - Present | Bhagalpur, India</p>
-                    <p>Working on real-world projects to enhance development skills and training others in web
-                        technologies.</p>
+                    <span class="role">WEB DEVELOPER & TRAINER | APR 2025 - PRESENT</span>
+                    <p>Leading web initiatives and training cohorts in modern web technologies. Bridging theory with
+                        real-world application.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Mentorship</span>
+                        <span class="tech-pill">Live Projects</span>
+                    </div>
                 </div>
-
-                <!-- Education -->
-                <div class="card">
-                    <h3>Bhagalpur College of Engineering</h3>
-                    <h4>B.Tech in Computer Science</h4>
-                    <p class="date">Sep 2023 - Apr 2027</p>
-                    <p>Focused on Core CS, DSA, and Web Engineering.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Eastern Railway Inter College</h3>
-                    <h4>I.Sc, PCM</h4>
-                    <p class="date">Apr 2020 - Apr 2022</p>
-                    <p>Foundation in Physics, Chemistry, and Mathematics.</p>
+                <div class="brutal-card" style="border-right: none;">
+                    <h3>Education</h3>
+                    <span class="role">B.TECH CSE | 2023 - 2027</span>
+                    <p>Bhagalpur College of Engineering. Specialized in Data Structures, Algorithms, and System
+                        Architecture.</p>
                 </div>
             </div>
 
-            <!-- Skills -->
-            <h2 class="section-title">Technical Arsenal</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Languages</h3>
-                    <div class="tags">
-                        <span class="tag">C++ (DSA)</span>
-                        <span class="tag">JavaScript (ES6+)</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">HTML5/CSS3</span>
+            <!-- Projects/Skills -->
+            <div class="section-header">
+                <span>/// 03_ARSENAL</span>
+                <h2>Tech Stack</h2>
+            </div>
+            <div class="brutal-grid">
+                <div class="brutal-card">
+                    <h3>Frontend</h3>
+                    <p>Building reactive interfaces with pixel-perfect precision.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">React</span>
+                        <span class="tech-pill">Tailwind</span>
+                        <span class="tech-pill">Canvas API</span>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>Stack & Tools</h3>
-                    <div class="tags">
-                        <span class="tag">React.js</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Express</span>
-                        <span class="tag">MongoDB</span>
-                        <span class="tag">Git/GitHub</span>
+                <div class="brutal-card">
+                    <h3>Backend</h3>
+                    <p>Scalable server-side logic and database management.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Node.js</span>
+                        <span class="tech-pill">Express</span>
+                        <span class="tech-pill">MongoDB</span>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>Certifications</h3>
-                    <p>Oracle Cloud AI Foundations 2025</p>
-                    <p>Microsoft Copilot for Security</p>
-                    <p>Cybersecurity Foundations</p>
+                <div class="brutal-card" style="border-right: none;">
+                    <h3>Core</h3>
+                    <p>Fundamental problem solving and algorithmic thinking.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">C++</span>
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">DSA</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Contact -->
-            <h2 class="section-title">Let's Connect</h2>
-            <div class="card" style="text-align: center;">
-                <h3>Ready to collaborate?</h3>
-                <p>I'm always open to discussing product design, coding challenges, or partnership opportunities.</p>
+            <a href="mailto:priyanshsrivastava749@gmail.com" class="big-link">
+                Initiate Contact <span style="color: var(--accent)">-></span>
+            </a>
 
-                <div class="contact-links" style="justify-content: center;">
-                    <a href="mailto:priyanshsrivastava749@gmail.com" class="btn">Email Me</a>
-                    <a href="https://www.linkedin.com/in/priyansh-kumar-b3435a2b4" target="_blank"
-                        class="btn">LinkedIn</a>
-                    <a href="https://github.com/priyanshsrivastava749" target="_blank" class="btn">GitHub</a>
-                    <a href="https://leetcode.com/u/priyanshsrivastava749/" target="_blank" class="btn">LeetCode</a>
-                </div>
+            <div style="display: flex; border-bottom: 1px solid var(--border);">
+                <a href="https://linkedin.com" target="_blank" class="big-link"
+                    style="font-size: 1.5rem; flex: 1; border-right: 1px solid var(--border);">LinkedIn</a>
+                <a href="https://github.com" target="_blank" class="big-link"
+                    style="font-size: 1.5rem; flex: 1; border-right: 1px solid var(--border);">GitHub</a>
+                <a href="https://leetcode.com" target="_blank" class="big-link"
+                    style="font-size: 1.5rem; flex: 1;">LeetCode</a>
             </div>
 
-            <footer style="margin-top: 4rem; text-align: center; color: #555; font-size: 0.9rem;">
-                &copy; 2026 Priyansh Kumar. All Rights Reserved.
+            <footer style="padding: 2rem; text-align: center; color: #444; font-family: var(--font-mono);">
+                SYSTEM STATUS: ONLINE /// © 2026 PRIYANSH KUMAR
             </footer>
 
         </div>
     </section>
 
-    <!-- SCRIPTS -->
     <script>
-        /**
-         * SCROLLYTELLING ANIMATION ENGINE
-         * Optimized for performance using RequestAnimationFrame and Logic separation.
-         * Features: 
-         * - Preloading of Image Sequence
-         * - Smooth interpolation between frames (scrollytelling)
-         * - Crossfade + Scale transitions
-         */
+        // --- 1. FILENAME REGISTRY ---
+        // Explicit list of files in /sequence/ folder
+        const FRAME_LIST = ["frame_00_delay-0.083s.png", "frame_01_delay-0.084s.png", "frame_02_delay-0.083s.png", "frame_03_delay-0.083s.png", "frame_04_delay-0.084s.png", "frame_05_delay-0.083s.png", "frame_06_delay-0.083s.png", "frame_07_delay-0.084s.png", "frame_08_delay-0.083s.png", "frame_09_delay-0.083s.png", "frame_10_delay-0.084s.png", "frame_11_delay-0.083s.png", "frame_12_delay-0.083s.png", "frame_13_delay-0.084s.png", "frame_14_delay-0.083s.png", "frame_15_delay-0.083s.png", "frame_16_delay-0.084s.png", "frame_17_delay-0.083s.png", "frame_18_delay-0.083s.png", "frame_19_delay-0.084s.png", "frame_20_delay-0.083s.png", "frame_21_delay-0.083s.png", "frame_22_delay-0.084s.png", "frame_23_delay-0.083s.png", "frame_24_delay-0.083s.png", "frame_25_delay-0.084s.png", "frame_26_delay-0.083s.png", "frame_27_delay-0.083s.png", "frame_28_delay-0.084s.png", "frame_29_delay-0.083s.png", "frame_30_delay-0.083s.png", "frame_31_delay-0.084s.png", "frame_32_delay-0.083s.png", "frame_33_delay-0.083s.png", "frame_34_delay-0.084s.png", "frame_35_delay-0.083s.png", "frame_36_delay-0.083s.png", "frame_37_delay-0.084s.png", "frame_38_delay-0.083s.png", "frame_39_delay-0.083s.png", "frame_40_delay-0.084s.png", "frame_41_delay-0.083s.png", "frame_42_delay-0.083s.png", "frame_43_delay-0.084s.png", "frame_44_delay-0.083s.png", "frame_45_delay-0.083s.png", "frame_46_delay-0.084s.png", "frame_47_delay-0.083s.png", "frame_48_delay-0.083s.png", "frame_49_delay-0.084s.png", "frame_50_delay-0.083s.png", "frame_51_delay-0.083s.png", "frame_52_delay-0.084s.png", "frame_53_delay-0.083s.png", "frame_54_delay-0.083s.png", "frame_55_delay-0.084s.png", "frame_56_delay-0.083s.png", "frame_57_delay-0.083s.png", "frame_58_delay-0.084s.png", "frame_59_delay-0.083s.png", "frame_60_delay-0.083s.png", "frame_61_delay-0.084s.png", "frame_62_delay-0.083s.png", "frame_63_delay-0.083s.png", "frame_64_delay-0.084s.png", "frame_65_delay-0.083s.png", "frame_66_delay-0.083s.png", "frame_67_delay-0.084s.png", "frame_68_delay-0.083s.png", "frame_69_delay-0.083s.png", "frame_70_delay-0.084s.png", "frame_71_delay-0.083s.png", "frame_72_delay-0.083s.png", "frame_73_delay-0.084s.png", "frame_74_delay-0.083s.png", "frame_75_delay-0.083s.png", "frame_76_delay-0.084s.png", "frame_77_delay-0.083s.png", "frame_78_delay-0.083s.png", "frame_79_delay-0.084s.png", "frame_80_delay-0.083s.png", "frame_81_delay-0.083s.png", "frame_82_delay-0.084s.png", "frame_83_delay-0.083s.png", "frame_84_delay-0.083s.png", "frame_85_delay-0.084s.png", "frame_86_delay-0.083s.png", "frame_87_delay-0.083s.png", "frame_88_delay-0.084s.png", "frame_89_delay-0.083s.png", "frame_90_delay-0.083s.png", "frame_91_delay-0.084s.png", "frame_92_delay-0.083s.png"];
 
-        // --- CONFIGURATION ---
+        // --- CONFIG ---
         const CONFIG = {
-            frameCount: 120, // Total frames based on sequence folder content (000-119)
+            frameCount: FRAME_LIST.length, // 93 Frames
             imgFolder: './sequence/',
-            filePrefix: 'frame_',
-            fileExt: '.png', // Found .png files in directory
-            easing: 0.1 // Interpolation factor (0.1 = smooth, 1 = instant)
+            easing: 0.1, // Smoothness factor
+            // Fallback image 
+            fallbackUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'
         };
 
-        // --- DOM ELEMENTS ---
+        // --- STATE ---
+        const state = {
+            images: [],
+            loadedCount: 0,
+            failedCount: 0,
+            targetFrame: 0,
+            currentFrame: 0,
+            useFallback: false,
+            fallbackImg: new Image()
+        };
+
+        // --- DOM ---
         const canvas = document.getElementById('heroCanvas');
-        const ctx = canvas.getContext('2d', { alpha: false }); // Optimize for no transparency if full screen
+        const ctx = canvas.getContext('2d');
         const loader = document.getElementById('loader');
+        const loadBar = document.getElementById('loadBar');
+        const loadPercent = document.getElementById('loadPercent');
         const scrollContainer = document.getElementById('scrollContainer');
-        const scrollIndicator = document.getElementById('scrollIndicator');
         const overlays = [
             document.getElementById('overlay1'),
             document.getElementById('overlay2'),
             document.getElementById('overlay3')
         ];
 
-        // --- STATE MANAGEMENT ---
-        const state = {
-            images: [],
-            loadedCount: 0,
-            targetFrame: 0,    // Where the scroll wants to be
-            currentFrame: 0,   // Where the animation currently is (float)
-            isLoaded: false,
-            isScrolling: false
-        };
+        // --- PRELOADER ---
+        const preload = () => {
+            // Load fallback in background 
+            state.fallbackImg.src = CONFIG.fallbackUrl;
 
-        // --- 1. PRELOADER SYSTEM ---
-        const preloadImages = () => {
+            // Load all sequence images
             for (let i = 0; i < CONFIG.frameCount; i++) {
                 const img = new Image();
-                // Construct filename: frame_000.png
-                const frameNumber = i.toString().padStart(3, '0');
-                img.src = `${CONFIG.imgFolder}${CONFIG.filePrefix}${frameNumber}${CONFIG.fileExt}`;
+                // Use explicit filename from list
+                img.src = `${CONFIG.imgFolder}${FRAME_LIST[i]}`;
 
-                img.onload = onImageLoad;
-                img.onerror = onImageError; // Graceful fallback
+                img.onload = () => updateLoad(true);
+                img.onerror = () => updateLoad(false);
                 state.images.push(img);
             }
+
+            // Safety Timeout (In case of network hang)
+            setTimeout(() => {
+                if (loader.style.display !== 'none') {
+                    // Force start 
+                    if (state.loadedCount < 10) state.useFallback = true;
+                    start();
+                }
+            }, 8000);
         };
 
-        const onImageLoad = () => {
-            state.loadedCount++;
-            const percent = Math.round((state.loadedCount / CONFIG.frameCount) * 100);
-            loader.innerText = `Loading Experience... ${percent}%`;
+        const updateLoad = (success) => {
+            if (success) state.loadedCount++;
+            else state.failedCount++;
 
-            if (state.loadedCount === CONFIG.frameCount) {
-                initAnimation();
+            const total = state.loadedCount + state.failedCount;
+            const pct = Math.round((total / CONFIG.frameCount) * 100);
+
+            loadBar.style.width = `${pct}%`;
+            loadPercent.innerText = `${pct}%`;
+
+            if (total === CONFIG.frameCount) {
+                // If most failed, switch to fallback
+                if (state.failedCount > CONFIG.frameCount * 0.8) {
+                    state.useFallback = true;
+                }
+                setTimeout(start, 500);
             }
         };
 
-        const onImageError = (e) => {
-            console.error("Failed to load image", e.target.src);
-            // Treat as loaded to avoid blocking app
-            onImageLoad();
-        };
+        // --- START ---
+        const start = () => {
+            loader.style.opacity = 0;
+            setTimeout(() => loader.style.display = 'none', 500);
 
-        // --- 2. INITIALIZATION ---
-        const initAnimation = () => {
-            state.isLoaded = true;
-            resizeCanvas();
-
-            // Fade out loader
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-                scrollIndicator.style.opacity = '1';
-                overlays[0].style.opacity = '1';
-            }, 500);
+            resize();
+            window.addEventListener('resize', resize);
+            window.addEventListener('scroll', handleScroll, { passive: true });
 
             // Start Animation Loop
             requestAnimationFrame(renderLoop);
+
+            // Show first overlay
+            overlays[0].style.opacity = 1;
         };
 
-        // --- 3. RESIZE HANDLER ---
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            // Force re-render immediately if idle
-            if (state.isLoaded) drawFrame(state.currentFrame);
-        };
-        window.addEventListener('resize', resizeCanvas);
-
-        // --- 4. SCROLL INPUT HANDLER ---
-        const handleScroll = () => {
-            const containerTop = scrollContainer.offsetTop;
-            const containerHeight = scrollContainer.offsetHeight - window.innerHeight;
-            const scrollTop = window.scrollY;
-
-            // Calculate progress (0 to 1)
-            let progress = (scrollTop - containerTop) / containerHeight;
-            progress = Math.min(Math.max(progress, 0), 1);
-
-            // Map progress to Frame Index (Float for smoothness)
-            state.targetFrame = progress * (CONFIG.frameCount - 1);
-
-            // Update Overlays
-            updateOverlays(progress);
-        };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-
-        // --- 5. ANIMATION LOOP (The "Brain") ---
+        // --- RENDER LOOP ---
         const renderLoop = () => {
             // Smoothly interpolate currentFrame towards targetFrame
-            // This creates the "delayed/smooth" feel.
             const diff = state.targetFrame - state.currentFrame;
 
-            // If significant difference, update
-            if (Math.abs(diff) > 0.01) {
+            if (Math.abs(diff) > 0.001) {
                 state.currentFrame += diff * CONFIG.easing;
-                drawFrame(state.currentFrame);
+                render();
             }
 
             requestAnimationFrame(renderLoop);
         };
 
-        // --- 6. DRAWING LOGIC (Canvas) ---
-        const drawFrame = (frameIndex) => {
-            // Ensure bounds
-            if (frameIndex < 0) frameIndex = 0;
-            if (frameIndex > CONFIG.frameCount - 1) frameIndex = CONFIG.frameCount - 1;
+        const drawImageCover = (ctx, img, opacity = 1, scale = 1) => {
+            if (!img || !img.complete) return;
 
-            const index1 = Math.floor(frameIndex);
-            const index2 = Math.min(index1 + 1, CONFIG.frameCount - 1);
-            const mix = frameIndex - index1; // Fractional part (0.0 to 1.0) for fade
-
-            const img1 = state.images[index1];
-            const img2 = state.images[index2];
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // OPTIMIZATION: If on exact frame, draw only one
-            if (mix < 0.02) {
-                drawImageToFit(ctx, img1);
-            } else if (mix > 0.98) {
-                drawImageToFit(ctx, img2);
-            }
-            else {
-                // BLENDING MODE: Fade + Scale
-                // Draw 1st Frame
-                ctx.globalAlpha = 1;
-                drawImageToFit(ctx, img1);
-
-                // Draw 2nd Frame with Opacity
-                ctx.globalAlpha = mix;
-
-                // Optional: slight scale effect during transition (Zoom In)
-                // Save context to apply transform only to second image?
-                // Visual effect: Frame 2 fades in while slightly zooming? 
-                // Let's keep it simple: Crossfade is the cleanest "smooth" transition for video-like sequences.
-                // Adding scale to the second image might cause "jitter" if frames are similar.
-                // BUT user asked for "Fade + Scale".
-                // I will add a subtle GLOBAL scale based on velocity or just blend.
-                // Actually, let's Scale the ENTIRE canvas context slightly?
-                // No, that's heavy.
-                // Let's stick to pure crossfade which IS the "Fade" transition. 
-                // "Scale" might refer to the entrance. 
-
-                drawImageToFit(ctx, img2);
-
-                // Reset Alpha
-                ctx.globalAlpha = 1;
-            }
-        };
-
-        // Helper to 'cover' the canvas with image (background-size: cover equivalent)
-        const drawImageToFit = (context, img) => {
-            if (!img.complete) return;
-
-            const w = context.canvas.width;
-            const h = context.canvas.height;
+            const w = canvas.width;
+            const h = canvas.height;
             const iw = img.width;
             const ih = img.height;
-
             const r = Math.min(w / iw, h / ih);
-            let nw = iw * r;
-            let nh = ih * r;
+
+            let nw = iw * r * scale;
+            let nh = ih * r * scale;
             let ar = 1;
 
-            // Decide which dimension to fill
+            // Standard Cover Logic
             if (nw < w) ar = w / nw;
             if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
             nw *= ar;
             nh *= ar;
 
-            // Center image
             const cx = (w - nw) / 2;
             const cy = (h - nh) / 2;
 
-            context.drawImage(img, cx, cy, nw, nh);
+            ctx.globalAlpha = opacity;
+            ctx.drawImage(img, cx, cy, nw, nh);
+            ctx.globalAlpha = 1;
         };
 
-        // --- 7. OVERLAY LOGIC ---
-        const updateOverlays = (progress) => {
-            // Hide scroll indicator
-            if (progress > 0.02) scrollIndicator.style.opacity = 0;
-            else scrollIndicator.style.opacity = 1;
+        const render = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#050505";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Overlay 1
-            if (progress < 0.15) {
-                overlays[0].style.opacity = 1 - (progress * 5); // Fade out quickly
-                overlays[0].style.transform = `translate(-50%, -50%) scale(${1 - progress})`;
+            if (state.useFallback) {
+                // Fallback Mode (Static Image with Zoom)
+                const zoom = 1 + (state.currentFrame / CONFIG.frameCount) * 0.2;
+                if (state.fallbackImg.complete) {
+                    drawImageCover(ctx, state.fallbackImg, 1, zoom);
+                    // Darken overlay
+                    ctx.fillStyle = "rgba(0,0,0,0.7)";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+            } else {
+                // Sequence Mode (Crossfade + Scale)
+                let frameIndex = state.currentFrame;
+                // Clamp
+                if (frameIndex < 0) frameIndex = 0;
+                if (frameIndex > CONFIG.frameCount - 1) frameIndex = CONFIG.frameCount - 1;
+
+                const index1 = Math.floor(frameIndex);
+                const index2 = Math.min(index1 + 1, CONFIG.frameCount - 1);
+                const mix = frameIndex - index1; // 0.0 to 1.0
+
+                const img1 = state.images[index1];
+                const img2 = state.images[index2];
+
+                // Optimization: Draw single frame if transition is barely visible
+                if (mix < 0.05) {
+                    drawImageCover(ctx, img1, 1, 1);
+                } else {
+                    // CROSSFADE LOGIC
+                    // Frame 1: Fades out, Scales up slightly
+                    drawImageCover(ctx, img1, 1, 1 + (mix * 0.05));
+
+                    // Frame 2: Fades in, Scales down 
+                    drawImageCover(ctx, img2, mix, 1.05 - (mix * 0.05));
+                }
+            }
+        };
+
+        // --- LOGIC ---
+        const handleScroll = () => {
+            const top = scrollContainer.offsetTop;
+            const h = scrollContainer.offsetHeight - window.innerHeight;
+            const y = window.scrollY;
+
+            let progress = (y - top) / h;
+            progress = Math.min(Math.max(progress, 0), 1);
+
+            state.targetFrame = progress * (CONFIG.frameCount - 1);
+
+            updateOverlays(progress);
+        };
+
+        const updateOverlays = (p) => {
+            // Overlay 1 (0.0 - 0.2)
+            if (p < 0.2) {
+                overlays[0].style.opacity = 1 - (p * 5);
+                overlays[0].style.transform = `translate(-50%, -50%) scale(${1 + p})`;
             } else {
                 overlays[0].style.opacity = 0;
             }
 
-            // Overlay 2 (Phase 2)
-            if (progress > 0.2 && progress < 0.5) {
-                // Fade in/out
+            // Overlay 2 (0.2 - 0.5)
+            if (p > 0.2 && p < 0.5) {
                 let op = 0;
-                if (progress < 0.3) op = (progress - 0.2) * 10;
-                else if (progress > 0.4) op = 1 - ((progress - 0.4) * 10);
+                if (p < 0.3) op = (p - 0.2) * 10;
+                else if (p > 0.4) op = 1 - ((p - 0.4) * 10);
                 else op = 1;
-
-                overlays[1].style.opacity = Math.max(0, op);
-                // Parallax move
-                overlays[1].style.transform = `translate(0, calc(-50% - ${(progress - 0.3) * 100}px))`;
+                overlays[1].style.opacity = op;
+                const y = (p - 0.2) * 200;
+                overlays[1].style.transform = `translate(0, calc(-50% - ${y}px))`;
             } else {
                 overlays[1].style.opacity = 0;
             }
 
-            // Overlay 3 (Phase 3)
-            if (progress > 0.6 && progress < 0.9) {
+            // Overlay 3 (0.6 - 0.9)
+            if (p > 0.6 && p < 0.9) {
                 let op = 0;
-                if (progress < 0.7) op = (progress - 0.6) * 10;
-                else if (progress > 0.8) op = 1 - ((progress - 0.8) * 10);
+                if (p < 0.7) op = (p - 0.6) * 10;
+                else if (p > 0.8) op = 1 - ((p - 0.8) * 10);
                 else op = 1;
-
-                overlays[2].style.opacity = Math.max(0, op);
-                overlays[2].style.transform = `translate(0, calc(-50% - ${(progress - 0.7) * 100}px))`;
+                overlays[2].style.opacity = op;
+                const y = (p - 0.6) * 200;
+                overlays[2].style.transform = `translate(0, calc(-50% - ${y}px))`;
             } else {
                 overlays[2].style.opacity = 0;
             }
         };
 
-        // Start loading
-        preloadImages();
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            if (!state.currentFrame) render();
+        };
+
+        // GO
+        preload();
 
     </script>
 </body>
