@@ -551,32 +551,109 @@
                 <span>/// 03_ARSENAL</span>
                 <h2>Tech Stack</h2>
             </div>
+
+            <style>
+                .tech-icon-pill {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-family: var(--font-mono);
+                    font-size: 0.8rem;
+                    border: 1px solid var(--border);
+                    padding: 5px 10px;
+                    color: var(--text-main);
+                    text-transform: uppercase;
+                    transition: border-color 0.2s, color 0.2s;
+                }
+
+                .tech-icon-pill img {
+                    filter: grayscale(100%) brightness(1.5);
+                    transition: filter 0.2s;
+                }
+
+                .brutal-card:hover .tech-icon-pill {
+                    border-color: var(--accent);
+                    color: var(--accent);
+                }
+
+                .brutal-card:hover .tech-icon-pill img {
+                    filter: grayscale(0%) brightness(1);
+                }
+            </style>
+
             <div class="brutal-grid">
                 <div class="brutal-card">
-                    <h3>Frontend</h3>
-                    <p>Building reactive interfaces with pixel-perfect precision.</p>
+                    <h3>Frontend / UI</h3>
+                    <p>Building reactive web & cloud interfaces.</p>
                     <div class="tech-stack">
-                        <span class="tech-pill">Django Templates</span>
-                        <span class="tech-pill">Tailwind</span>
-                        <span class="tech-pill">Canvas API</span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
+                                height="16" width="16">
+                            HTML5/CSS
+                        </span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+                                height="16" width="16">
+                            JavaScript
+                        </span>
+                        <span class="tech-icon-pill">
+                            Django Templates
+                        </span>
                     </div>
                 </div>
                 <div class="brutal-card">
-                    <h3>Backend</h3>
-                    <p>Scalable server-side logic and database management.</p>
+                    <h3>Backend & DevOps</h3>
+                    <p>Scalable server logic, containers & deployment.</p>
                     <div class="tech-stack">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">Django REST Framework</span>
-                        <span class="tech-pill">PostgreSQL</span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+                                height="16" width="16">
+                            Python
+                        </span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
+                                height="16" width="16">
+                            Docker
+                        </span>
+                        <span class="tech-icon-pill">
+                            <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" height="16"
+                                width="16">
+                            Kubernetes
+                        </span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                                height="16" width="30" style="object-fit: contain;">
+                            AWS
+                        </span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
+                                height="16" width="16">
+                            Linux
+                        </span>
                     </div>
                 </div>
                 <div class="brutal-card" style="border-right: none;">
-                    <h3>Core</h3>
-                    <p>Fundamental problem solving and algorithmic thinking.</p>
+                    <h3>Core & Systems</h3>
+                    <p>Problem-solving, algorithmic thinking & version control.</p>
                     <div class="tech-stack">
-                        <span class="tech-pill">C++</span>
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">DSA</span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+                                height="16" width="16">
+                            C++
+                        </span>
+                        <span class="tech-icon-pill">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+                                height="16" width="16">
+                            C
+                        </span>
+                        <span class="tech-icon-pill">
+                            <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" height="16"
+                                width="16">
+                            Git/CI/CD
+                        </span>
+                        <span class="tech-icon-pill">
+                            DSA (125+ LC)
+                        </span>
                     </div>
                 </div>
             </div>
@@ -590,7 +667,7 @@
                 style="display: flex; border-bottom: 1px solid var(--border);">
 
                 <div class="social-link-wrapper" style="flex: 1; border-right: 1px solid var(--border);">
-                    <a href="https://linkedin.com/in/priyanshsrivastava749" target="_blank"
+                    <a href="https://www.linkedin.com/in/priyansh-kumar-b3435a2b4/" target="_blank"
                         class="big-link hover-trigger"
                         style="font-size: 1.5rem; width: 100%; border-right: none;">LinkedIn</a>
                     <div class="hover-card">
