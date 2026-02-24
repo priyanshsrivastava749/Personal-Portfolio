@@ -658,6 +658,213 @@
                 </div>
             </div>
 
+            <!-- Major Projects -->
+            <div class="section-header">
+                <span>/// 04_PROJECTS</span>
+                <h2>Major Projects</h2>
+            </div>
+
+            <style>
+                .project-card {
+                    padding: 3rem;
+                    border-right: 1px solid var(--border);
+                    border-bottom: 1px solid var(--border);
+                    transition: background 0.2s;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .project-card:hover {
+                    background: var(--surface-color);
+                }
+
+                .project-card:nth-child(even) {
+                    border-right: none;
+                }
+
+                .project-card h3 {
+                    font-size: 2rem;
+                    margin-bottom: 0.5rem;
+                    text-transform: uppercase;
+                    color: #fff;
+                }
+
+                .project-type {
+                    font-family: var(--font-mono);
+                    color: var(--accent);
+                    margin-bottom: 1.5rem;
+                    display: block;
+                    font-size: 0.85rem;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                }
+
+                .project-desc {
+                    font-size: 1.1rem;
+                    line-height: 1.5;
+                    color: var(--text-muted);
+                    flex-grow: 1;
+                    margin-bottom: 2rem;
+                }
+
+                .project-links {
+                    display: flex;
+                    gap: 15px;
+                    flex-wrap: wrap;
+                }
+
+                .project-btn {
+                    font-family: var(--font-mono);
+                    font-size: 0.9rem;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    padding: 10px 20px;
+                    border: 1px solid var(--border);
+                    color: var(--text-main);
+                    background: transparent;
+                    transition: all 0.3s;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    cursor: pointer;
+                }
+
+                .project-btn:hover {
+                    border-color: var(--accent);
+                    background: var(--accent);
+                    color: #000;
+                }
+
+                .project-btn svg {
+                    fill: currentColor;
+                }
+
+                .project-btn-primary {
+                    border-color: var(--accent);
+                    color: var(--accent);
+                }
+
+                .more-ideas-banner {
+                    padding: 3rem;
+                    text-align: center;
+                    border-bottom: 1px solid var(--border);
+                    background: repeating-linear-gradient(45deg,
+                            rgba(204, 255, 0, 0.03),
+                            rgba(204, 255, 0, 0.03) 10px,
+                            transparent 10px,
+                            transparent 20px);
+                }
+
+                .more-ideas-banner h3 {
+                    font-size: 1.5rem;
+                    color: var(--text-main);
+                    font-family: var(--font-mono);
+                    letter-spacing: 2px;
+                }
+
+                .more-ideas-banner span {
+                    color: var(--accent);
+                }
+
+                @media (max-width: 768px) {
+                    .project-card:nth-child(odd) {
+                        border-right: none;
+                    }
+                }
+            </style>
+
+            <div class="brutal-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <span class="project-type">/// DSA RESOURCES</span>
+                    <h3>DSA-Notes-And-Code</h3>
+                    <p class="project-desc">Repository containing extensive resources for Data Structures and
+                        Algorithms, including LeetCode questions, complete solutions, and core fundamentals.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/priyanshsrivastava749/DSA-Notes-and-Code.git" target="_blank"
+                            class="project-btn">
+                            <svg height="16" viewBox="0 0 16 16" width="16">
+                                <path
+                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                </path>
+                            </svg>
+                            GitHub Repo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <span class="project-type">/// FULL STACK APP</span>
+                    <h3>Done-Dusted</h3>
+                    <p class="project-desc">A comprehensive progress and habit tracker application. Designed to keep
+                        users accountable with aesthetic dashboards and analytics.</p>
+                    <div class="project-links">
+                        <a href="https://priyanshkumar749.pythonanywhere.com/core/dashboard/" target="_blank"
+                            class="project-btn project-btn-primary">
+                            <svg height="16" viewBox="0 0 16 16" width="16">
+                                <path fill-rule="evenodd"
+                                    d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z">
+                                </path>
+                            </svg>
+                            Live App
+                        </a>
+                        <a href="https://github.com/priyanshsrivastava749/Done-Dusted.git" target="_blank"
+                            class="project-btn">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <span class="project-type">/// ED-TECH PLATFORM</span>
+                    <h3>Tutor-Track</h3>
+                    <p class="project-desc">A platform helping local tutors connect with students, provide resources,
+                        and maintain online track records of student progress.</p>
+                    <div class="project-links">
+                        <a href="https://tutortrack-lgit.onrender.com/" target="_blank"
+                            class="project-btn project-btn-primary">
+                            <svg height="16" viewBox="0 0 16 16" width="16">
+                                <path fill-rule="evenodd"
+                                    d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z">
+                                </path>
+                            </svg>
+                            Live App
+                        </a>
+                        <a href="https://github.com/priyanshsrivastava749/TutorTrack.git" target="_blank"
+                            class="project-btn">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <span class="project-type">/// AI / LLM INTERFACE</span>
+                    <h3>Friday</h3>
+                    <p class="project-desc">A local LLM interaction interface with system access capabilities, allowing
+                        voice-controlled system actions (primitive Ironman AI concept).</p>
+                    <div class="project-links">
+                        <a href="https://github.com/priyanshsrivastava749/Friday-2025.git" target="_blank"
+                            class="project-btn">
+                            <svg height="16" viewBox="0 0 16 16" width="16">
+                                <path
+                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                </path>
+                            </svg>
+                            GitHub Repo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coming Soon -->
+            <div class="more-ideas-banner">
+                <h3>[ SYSTEM ALERT ] <br><span style="margin-top: 10px; display: inline-block;">+ MORE COOL IDEAS UNDER
+                        PROGRESS_</span></h3>
+            </div>
+
             <!-- Contact -->
             <a href="mailto:priyanshsrivastava749@gmail.com" class="big-link">
                 Initiate Contact <span style="color: var(--accent)">-></span>
